@@ -1,0 +1,29 @@
+<!--El cliente ya inicio sesión
+Correo
+Telefono
+Nombre
+Apellido-->
+
+<form method="POST" action="reservar_catering.php">
+    <label for="correo">Correo: </label><br />
+    <input type="text" name="correo" id="correo" disabled />
+
+    <label for="lugar">Estado o Ciudad: </label><br />
+    <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad" />
+
+    <label for="tipo_evento">Tipo de evento: </label><br />
+    <input type="radio" name="tipo_evento" id="1" />Paquete 1 <br />
+    <input type="radio" name="tipo_evento" id="2" />Paquete 2 <br />
+    <input type="radio" name="tipo_evento" id="3" />Paquete 3 <br />
+
+    <label for="descripcion">Descripcion de solicitud: </label><br />
+    <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la solicitud" /><br />
+    
+    <input type="submit" value="Enviar" />
+    <input type="reset" value="Limpiar" />
+</form>
+
+<script>
+    document.getElementById("correo").innerHTML = sessionStorage.getItem("correo");
+</script>
+<!--Datos enviados al correo de la empresa-->
