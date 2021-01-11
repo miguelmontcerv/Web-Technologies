@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Registraté Cannela Mx</title>
+  <title>Reservación Cannela Mx</title>
   <meta content="coffe" name="description">
   <meta content="coffe" name="keywords">
 
@@ -84,43 +84,32 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Registro</h2>
+          <h2>Reservación</h2>
           <p>Favor de llenar los siguientes campos con la información solicitada ...</p>
         </div>
 
-        <form action="https://github.com/miguelmontcerv/Frontend" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">        
-          <div class="form-row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Nombre Completo" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Apellidos" data-rule="minlen:4" data-msg="Favor de llenar el campo con un correo valido">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
+        <form method="POST" action="reservar_catering.php">
+          <label for="correo">Correo: </label><br />
+          <!-- <input type="text" name="correo" id="correo" disabled /> -->
+          
+          <div class="col-lg-4 col-md-6 form-group">
               <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
               <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="date" class="form-control" id="date" placeholder="Número de telefono" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Contraseña" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Repetir Contraseña" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
-              <div class="validate"></div>
-            </div>
-          </div>          
-          <div class="mb-3">
-            <div class="error-message"></div>
-            <div class="sent-message">Grax!</div>
           </div>
-            
-          <div class="text-center"><button href="https://cannelamx.netlify.app/" type="submit">Regístrate</button></div> <br>          
+
+          <label for="lugar">Estado o Ciudad: </label><br />
+          <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad" />
+
+          <label for="tipo_evento">Tipo de evento: </label><br />
+          <input type="radio" name="tipo_evento" id="1" />Paquete 1 <br />
+          <input type="radio" name="tipo_evento" id="2" />Paquete 2 <br />
+          <input type="radio" name="tipo_evento" id="3" />Paquete 3 <br />
+
+          <label for="descripcion">Descripcion de solicitud: </label><br />
+          <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la solicitud" /><br />
+          
+          <input type="submit" value="Enviar" />
+          <input type="reset" value="Limpiar" />
         </form>
 
       </div>
