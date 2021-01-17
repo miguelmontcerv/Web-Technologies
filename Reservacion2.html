@@ -94,11 +94,11 @@
         </div>
 
         <form method="POST" action="reservar_catering.php">
-          <label for="correo">Correo: </label><br />
-          <!-- <input type="text" name="correo" id="correo" disabled /> -->
+          <!--<label for="correo">Correo: </label><br />
+           <input type="text" name="correo" id="correo" disabled /> -->
           
           <div class="col-lg-4 col-md-6 form-group">
-              <input type="email" class="form-control" style="cursor: not-allowed;" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta" disabled>
+              <input type="hidden" class="form-control" style="cursor: not-allowed;" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
               <div class="validate"></div>
           </div>
 
@@ -121,7 +121,7 @@
             <input type="text" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n solicitud" /><br />
             <div class="validate"></div>
             -->
-            <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Descripci&oacute;n de la solicitud"></textarea>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Descripci&oacute;n de la solicitud"></textarea>
           </div>
 
           <div class="text-center">
@@ -129,6 +129,7 @@
             <input type="reset" value="Limpiar" />-->
 
             <button type="submit">Iniciar Sesión</button>
+            <input type="submit" value="Enviar">
             <button type="reset">Limpiar</button>
           </div>
         </form>
@@ -173,7 +174,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("email").value = sessionStorage.getItem("email");
-    document.getElementById("email").value = "EMAIL@TRAIDO_DE_SESION.COM";
+    document.getElementById("email").value = "EMAIL@TRAIDODESESION.COM";
   </script>
 
 </body>
