@@ -34,6 +34,32 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    input[type="submit"] {
+    appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+  </style>
 </head>
 
 <body>
@@ -70,7 +96,7 @@
           <li class="book-a-table text-center"><a href="https://cannelamx.netlify.app/#book-a-table">¡Reserva Ahora!</a></li>
         </ul>
       </nav><!-- .nav-menu -->
-
+    
     </div>
   </header><!-- End Header -->
 <br> <br> <br>
@@ -93,23 +119,39 @@
           <!-- <input type="text" name="correo" id="correo" disabled /> -->
           
           <div class="col-lg-4 col-md-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
+              <input type="email" class="form-control" style="cursor: no-drop;" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta" disabled>
               <div class="validate"></div>
           </div>
 
           <label for="lugar">Estado o Ciudad: </label><br />
-          <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad" />
+          <div class="col-lg-4 col-md-6 form-group">
+            <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad" /><br />
+            <div class="validate"></div>
+          </div>
 
           <label for="tipo_evento">Tipo de evento: </label><br />
-          <input type="radio" name="tipo_evento" id="1" />Paquete 1 <br />
-          <input type="radio" name="tipo_evento" id="2" />Paquete 2 <br />
-          <input type="radio" name="tipo_evento" id="3" />Paquete 3 <br />
+          <div class="col-lg-4 col-md-6 form-group">
+            <input type="radio" name="tipo_evento" id="1" /> Paquete 1 <br />
+            <input type="radio" name="tipo_evento" id="2" /> Paquete 2 <br />
+            <input type="radio" name="tipo_evento" id="3" /> Paquete 3 <br />
+          </div>
 
           <label for="descripcion">Descripci&oacute;n de solicitud: </label><br />
-          <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la solicitud" /><br />
-          
-          <input type="submit" value="Enviar" />
-          <input type="reset" value="Limpiar" />
+          <div class="col-lg-4 col-md-6 form-group">
+            <!--
+            <input type="text" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n solicitud" /><br />
+            <div class="validate"></div>
+            -->
+            <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Descripci&oacute;n de la solicitud"></textarea>
+          </div>
+
+          <div class="text-center">
+            <!---<input type="submit" value="Enviar" />
+            <input type="reset" value="Limpiar" />-->
+
+            <button type="submit">Iniciar Sesión</button>
+            <button type="reset">Limpiar</button>
+          </div>
         </form>
 
       </div>
@@ -151,7 +193,8 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    document.getElementById("correo").innerHTML = sessionStorage.getItem("correo");
+    document.getElementById("email").value = sessionStorage.getItem("email");
+    document.getElementById("email").value = "EMAIL@TRAIDO_DE_SESION.COM";
   </script>
 
 </body>
