@@ -34,6 +34,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .radio-holder {
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -70,7 +75,7 @@
           <li class="book-a-table text-center"><a href="https://cannelamx.netlify.app/#book-a-table">¡Reserva Ahora!</a></li>
         </ul>
       </nav><!-- .nav-menu -->
-
+    
     </div>
   </header><!-- End Header -->
 <br> <br> <br>
@@ -89,27 +94,44 @@
         </div>
 
         <form method="POST" action="reservar_catering.php">
-          <label for="correo">Correo: </label><br />
-          <!-- <input type="text" name="correo" id="correo" disabled /> -->
+          <!--<label for="correo">Correo: </label><br />
+           <input type="text" name="correo" id="correo" disabled /> -->
           
           <div class="col-lg-4 col-md-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
+              <input type="hidden" class="form-control" style="cursor: not-allowed;" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
               <div class="validate"></div>
           </div>
 
           <label for="lugar">Estado o Ciudad: </label><br />
-          <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad" />
+          <div class="col-lg-4 col-md-6 form-group">
+            <input type="text" name="lugar" id="lugar" placeholder="Estado o Ciudad"/><br />
+            <div class="validate"></div>
+          </div>
 
           <label for="tipo_evento">Tipo de evento: </label><br />
-          <input type="radio" name="tipo_evento" id="1" />Paquete 1 <br />
-          <input type="radio" name="tipo_evento" id="2" />Paquete 2 <br />
-          <input type="radio" name="tipo_evento" id="3" />Paquete 3 <br />
+          <div class="col-lg-4 col-md-6 form-group">
+            <input type="radio" name="tipo_evento" id="1" /> <label class="radio-holder" for="1">Paquete 1</label> <br />
+            <input type="radio" name="tipo_evento" id="2" /> <label class="radio-holder" for="2">Paquete 2</label> <br />
+            <input type="radio" name="tipo_evento" id="3" /> <label class="radio-holder" for="3">Paquete 3</label> <br />
+          </div>
 
           <label for="descripcion">Descripci&oacute;n de solicitud: </label><br />
-          <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la solicitud" /><br />
-          
-          <input type="submit" value="Enviar" />
-          <input type="reset" value="Limpiar" />
+          <div class="col-lg-4 col-md-6 form-group">
+            <!--
+            <input type="text" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n solicitud" /><br />
+            <div class="validate"></div>
+            -->
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Descripci&oacute;n de la solicitud"></textarea>
+          </div>
+
+          <div class="text-center">
+            <!---<input type="submit" value="Enviar" />
+            <input type="reset" value="Limpiar" />-->
+
+            <button type="submit">Iniciar Sesión</button>
+            <input type="submit" value="Enviar">
+            <button type="reset">Limpiar</button>
+          </div>
         </form>
 
       </div>
@@ -150,6 +172,10 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("email").value = sessionStorage.getItem("email");
+    document.getElementById("email").value = "EMAIL@TRAIDODESESION.COM";
+  </script>
 
 </body>
 
