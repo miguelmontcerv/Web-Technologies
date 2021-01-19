@@ -8,5 +8,5 @@
     $tel= $_POST['phone'];
 
     register($con, $mail, $pass, $name, $lstname, $tel);
-    echo "registro exitoso";
+    echo "Registro exitoso";
 ?>

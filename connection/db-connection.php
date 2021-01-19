@@ -51,7 +51,16 @@
 
 	function register($con, $mail, $pass, $name, $lstname,$tel){
 		$query = "INSERT INTO profiledata VALUES ('{$mail}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
-		$result=mysqli_query($con, $query);
+		$result= mysqli_query($con, $query);
+		error($result);
+	}
+
+	function registrarCatering($con, $cmail, $n_paq){
+		$insert = "INSERT INTO Catering (cmail, npack) VALUES (?,?)";
+		$sql= $con->prepare($insert);
+		$sql->bind_param("sd", $cmail, $n_paq);
+		$result= $sql->execute();
+		//$result= mysqli_query($con, $insert);
 		error($result);
 	}
 	
