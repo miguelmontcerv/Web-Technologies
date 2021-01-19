@@ -3,7 +3,7 @@
 	//Cambiar datos a los requeridos particularmente
 	function conection(){
 		$username="root";
-		$psw="marino";
+		$psw="n0m3l0";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -50,7 +50,7 @@
 	}
 
 	function register($con, $mail, $pass, $name, $lstname,$tel){
-		$query = "INSERT INTO profiledata VALUES ('{$name}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
+		$query = "INSERT INTO profiledata VALUES ('{$mail}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
 		$result=mysqli_query($con, $query);
 		error($result);
 	}
