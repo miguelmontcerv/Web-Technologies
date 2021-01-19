@@ -59,11 +59,18 @@
 		error($result);
 	}
 
-	function catering ($con, $list){
-		$query ="INSERT INTO catering (cmail, npack, dtime, stat)VALUES ('{$list[0]}', '{$list[1]}', '{$list[2]}', 'recibido')";
-		$result=mysqli_query($con, $query);
-		error($result);
+	function registrarCatering ($con, $list){
+		$insert = "INSERT INTO Catering (cmail, npack) VALUES (?,?)";
+		$sql= $con->prepare($insert);
+		$sql->bind_param("sd", $list[0], $list[1]);
+		$result= $sql->execute();
 	}
+	/*
+	function register($con, $mail, $pass, $name, $lstname,$tel){
+		$query = "INSERT INTO profiledata VALUES ('{$mail}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
+		$result= mysqli_query($con, $query);
+		error($result);
+	}*/
 
 	function error($result){
 		if(!$result){

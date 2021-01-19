@@ -120,12 +120,12 @@
 
     #guarda orden de catering
     function scater($con){
-        $vars=array('mail', 'paq', 'fecha');
+        $vars=array('mail', 'no_paquete');
         #obtiene los valores del formulario para orden (nombre de los campos)
         for ($i=0; $i<3; $i++){
             $list[$i] = $_POST["{$vars[$i]}"];
         }
-        catering($con,$list);
+        registrarCatering($con,$list);
     }
 
     #muestra la informaición de 1 orden de catering especifica

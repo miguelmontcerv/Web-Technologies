@@ -7,6 +7,8 @@
     $lstname= $_POST['lastname'];
     $tel= $_POST['phone'];
 
-    register($con, $mail, $pass, $name, $lstname, $tel);
+    $list= [$mail, $pass, $name, $lstname, $tel];
+
+    register($con, $list);
     echo "Registro exitoso";
 ?>
