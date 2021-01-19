@@ -1,6 +1,6 @@
 <?php
 	//Sintaxis de conexión de la base de datos de muestra para PHP y MySQL.
-	//Cambiar datos a los requeridos particularmente
+	//Conectar a la base de datos
 	function conection(){
 		$username="root";
 		$psw="marino";
@@ -23,21 +23,19 @@
 			case 2:
 				#gets row from menu according to product
 				$query = "SELECT * FROM menu WHERE prod='{$value}'";
-				if(!($query))
-					error();
 				break;
 			case 3:
 				#gets row profile data
 				$query = "SELECT * FROM profiledata WHERE mail='{$value}'";
-				if(!($query))
-					error();
 				break;
 			case 4:
-				#gets all rows profile data  
-				$query = 'SELECT * FROM profiledata';
-				if(!($query))
-					error();
-				break;		
+				#gets row data from order
+				$query = "SELECT * FROM orders WHERE omail='{$value}'";
+				break;
+			case 5:	
+				#gets row data from catering
+				$query = "SELECT * FROM catering WHERE cmail='{$value}'";
+				break;
 			default: 
 				echo "Erroooor";
 				break;
@@ -49,12 +47,24 @@
 		return $result;
 	}
 
-	function register($con, $mail, $pass, $name, $lstname,$tel){
-		$query = "INSERT INTO profiledata VALUES ('{$name}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
+	function register($con, $list){
+		$query = "INSERT INTO profiledata VALUES ('{$list[0]}', '{$list[1]}', 'client', '{$list[2]}', '{$list[3]}', '{$list[4]}')";
 		$result=mysqli_query($con, $query);
 		error($result);
 	}
-	
+
+	function order ($con, $list){
+		$query ="INSERT INTO orders (omail, stat,msg, bill) VALUES ('{$list[0]}','recibido','{$list[1]}', '{$list[2]}')";
+		$result=mysqli_query($con, $query);
+		error($result);
+	}
+
+	function catering ($con, $list){
+		$query ="INSERT INTO catering (cmail, npack, dtime, stat)VALUES ('{$list[0]}', '{$list[1]}', '{$list[2]}', 'recibido')";
+		$result=mysqli_query($con, $query);
+		error($result);
+	}
+
 	function error($result){
 		if(!$result){
 			echo "Error de BD, no se pudo consultar la base de datos\n";
@@ -62,4 +72,3 @@
 		}
 	}
 ?>
-
