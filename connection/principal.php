@@ -41,7 +41,7 @@
             ccatering($con, $name, $registro);
             break;
         default:
-            echo "Error";            
+            echo "Error";
     }
 
     function listmenu($con){
@@ -85,12 +85,13 @@
 
     #registra a un usuario
     function sregister($con){
-        $vars=array('mail', 'psw', 'nom', 'ln', 'tel');
+        $vars= array('email', 'contrasenia', 'name', 'lastname', 'phone');
         #obtiene los valores del formulario para registro (nombre de los campos)
         for ($i=0; $i<5; $i++){
             $list[$i] = $_POST["{$vars[$i]}"];
         }
-        register($con,$list);
+        register($con, $list);
+        echo "Registro exitoso";
     }
 
     #guarda una orden
@@ -120,12 +121,22 @@
 
     #guarda orden de catering
     function scater($con){
-        $vars=array('mail', 'no_paquete');
-        #obtiene los valores del formulario para orden (nombre de los campos)
-        for ($i=0; $i<3; $i++){
-            $list[$i] = $_POST["{$vars[$i]}"];
+        if(!isset($_SESSION)) {
+            //echo "<script>alert('Sesión no reconocida');</script>";
+            //header("Location: http://google.com/search?Sesión%20No%20Reconocida");
+            //die();
         }
-        registrarCatering($con,$list);
+
+        $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
+
+        $lugar= $_POST['lugar'];
+        $no_paquete= $_POST['no_paquete'];
+        $descripcion= $_POST['descripcion'];
+
+        $response= registrarCatering($con, $email, $no_paquete);
+        //traemos datos cliente para correo
+        $nombre_cliente= "David";
+        echo "Registro exitoso";
     }
 
     #muestra la informaición de 1 orden de catering especifica

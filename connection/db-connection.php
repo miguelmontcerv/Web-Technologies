@@ -3,7 +3,7 @@
 	//Conectar a la base de datos
 	function conection(){
 		$username="root";
-		$psw="marino";
+		$psw="n0m3l0";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -59,18 +59,12 @@
 		error($result);
 	}
 
-	function registrarCatering ($con, $list){
-		$insert = "INSERT INTO Catering (cmail, npack) VALUES (?,?)";
+	function registrarCatering ($con, $email, $no_paquete){
+		$insert = "INSERT INTO catering (cmail, npack) VALUES (?,?)";
 		$sql= $con->prepare($insert);
-		$sql->bind_param("sd", $list[0], $list[1]);
+		$sql->bind_param("sd", $email, $no_paquete);
 		$result= $sql->execute();
 	}
-	/*
-	function register($con, $mail, $pass, $name, $lstname,$tel){
-		$query = "INSERT INTO profiledata VALUES ('{$mail}', '{$pass}', 'client', '{$name}', '{$lstname}', '{$tel}')";
-		$result= mysqli_query($con, $query);
-		error($result);
-	}*/
 
 	function error($result){
 		if(!$result){
