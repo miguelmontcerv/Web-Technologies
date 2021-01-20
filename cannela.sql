@@ -5,7 +5,8 @@ CREATE TABLE pubs(nimg int auto_increment NOT NULL primary key, pmail varchar(10
 CREATE TABLE orders(norder int auto_increment NOT NULL primary key, omail varchar(100), state varchar(30), msg varchar(500), bill int);
 CREATE TABLE menu(prod varchar(50) NOT NULL, price int);
 CREATE TABLE menuxorders(norder int NOT NULL, product varchar(50) NOT NULL);
-CREATE TABLE catering(nsolic int auto_increment NOT NULL primary key, cmail varchar(100), npack int, dtime date, state varchar(30));
+CREATE TABLE catering(nsolic int auto_increment NOT NULL primary key, cmail varchar(100) NOT NULL, npack int NOT NULL, 
+dtime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, state varchar(30) NOT NULL DEFAULT "En Proceso");
 
 ALTER TABLE profiledata add constraint pk_profile primary key (mail);
 ALTER TABLE menu add constraint pk_menu primary key(prod);
