@@ -2,7 +2,7 @@ CREATE DATABASE cannela;
 USE cannela;
 CREATE TABLE profiledata(mail varchar(100) NOT NULL primary key, psw varchar(20) NOT NULL,  rol varchar(20), nom varchar(50), ln varchar(50), phone varchar(10));
 CREATE TABLE pubs(nimg int auto_increment NOT NULL primary key, pmail varchar(100),img blob);
-CREATE TABLE orders(norder int auto_increment NOT NULL primary key, omail varchar(100), state varchar(30), msg varchar(500), bill int);
+CREATE TABLE orders(norder int auto_increment NOT NULL primary key, omail varchar(100), stat varchar(30), msg varchar(500), bill varchar(10));
 CREATE TABLE menu(prod varchar(50) NOT NULL, price int);
 CREATE TABLE menuxorders(norder int NOT NULL, product varchar(50) NOT NULL);
 CREATE TABLE catering(nsolic int auto_increment NOT NULL primary key, cmail varchar(100) NOT NULL, npack int NOT NULL, 
@@ -29,5 +29,9 @@ INSERT INTO profiledata VALUES('mokef2000@gmail.com', 'cannelaAdmin', 'admin', '
 SELECT * FROM menu;
 SELECT * FROM menu WHERE prod='frappe';
 SELECT * FROM profiledata;
+SELECT * FROM orders;
+SELECT * FROM pubs;
+SELECT * FROM catering;
+SELECT * FROM menuxorders;
 
 #faults#
