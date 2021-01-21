@@ -4,14 +4,9 @@ CREATE TABLE profiledata(mail varchar(100) NOT NULL primary key, psw varchar(20)
 CREATE TABLE pubs(nimg int auto_increment NOT NULL primary key, pmail varchar(100),img blob);
 CREATE TABLE orders(norder int auto_increment NOT NULL primary key, omail varchar(100), stat varchar(30), msg varchar(500), bill varchar(10));
 CREATE TABLE menu(prod varchar(50) NOT NULL, price int);
-<<<<<<< HEAD
-CREATE TABLE menuxorders(norder int NOT NULL , product varchar(50) NOT NULL);
-CREATE TABLE catering(nsolic int auto_increment NOT NULL primary key, cmail varchar(100), npack int, dtime date, stat varchar(30));
-=======
 CREATE TABLE menuxorders(norder int NOT NULL, product varchar(50) NOT NULL);
 CREATE TABLE catering(nsolic int auto_increment NOT NULL primary key, cmail varchar(100) NOT NULL, npack int NOT NULL, 
 dtime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, state varchar(30) NOT NULL DEFAULT "En Proceso");
->>>>>>> 6933369890f9dc3bf1962e95ed5447819a3f9368
 
 ALTER TABLE profiledata add constraint pk_profile primary key (mail);
 ALTER TABLE menu add constraint pk_menu primary key(prod);
