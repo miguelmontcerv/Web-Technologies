@@ -40,6 +40,9 @@
             $registro=$_POST['reg'];
             ccatering($con, $name, $registro);
             break;
+        case 10:
+            login($con);  
+            break; 
         default:
             echo "Error";
     }
@@ -94,6 +97,14 @@
         echo "Registro exitoso";
     }
 
+    #registra a un usuario
+    function login($con){
+        $mail = $_POST['email'];
+        $contr = $_POST['contrasenia'];
+
+        login_f($con,$mail,$contr);
+    }
+
     #guarda una orden
     function sorder($con){
         $vars=array('mail', 'msj', 'total');
@@ -121,15 +132,13 @@
 
     #guarda orden de catering
     function scater($con){
-        //$_SESSION['data'];
         if(!isset($_SESSION)) {
             //echo "<script>alert('Sesión no reconocida');</script>";
             //header("Location: http://google.com/search?Sesión%20No%20Reconocida");
             //die();
-            echo "Sin sesión, no se registra en catering <br />";
         }
 
-        $email= $_SESSION['data'];
+        $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
 
         $lugar= $_POST['lugar'];
         $no_paquete= $_POST['no_paquete'];

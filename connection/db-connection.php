@@ -3,7 +3,7 @@
 	//Conectar a la base de datos
 	function conection(){
 		$username="root";
-		$psw="n0m3l0";
+		$psw="pepepecas1";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -51,6 +51,28 @@
 		$query = "INSERT INTO profiledata VALUES ('{$list[0]}', '{$list[1]}', 'client', '{$list[2]}', '{$list[3]}', '{$list[4]}')";
 		$result=mysqli_query($con, $query);
 		error($result);
+	}
+
+	function login_f($con, $mail, $contr){
+		
+		$query = "SELECT count(*) as cuenta FROM profiledata WHERE mail = '$mail' and  psw = '$contr'";
+		$result=mysqli_query($con, $query);
+		error($result);
+		$array = mysqli_fetch_array($result);
+
+		if($array['cuenta'] > 0){
+
+			if($mail == 'mokef2000@gmail.com'){
+				echo "Inicio de Sesión Exitoso, Bienvenido Administrador";
+				echo '<br><a href="Modulo_Control/Control.html">¡Comienza a Administrar!</a>';
+			}
+			else{
+				echo "Inicio de Sesión Exitoso";
+				echo '<br><a href="pdf/orden.html">¡Reserva Ahora!</a>';
+			}				
+		} else{
+			echo "Datos Incorrectos";
+		}
 	}
 
 	function order ($con, $list){

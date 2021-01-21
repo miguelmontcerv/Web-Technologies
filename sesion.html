@@ -28,12 +28,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Restaurantly - v1.2.0
-  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -88,22 +82,23 @@
           <p>Favor de llenar los siguientes campos con la información solicitada ...</p>
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">        
+        <form action="connection/principal.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           <div class="form-row">                        
             <div class="col-lg-4 col-md-6 form-group">
               <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" data-rule="email" data-msg="Favor de llenar el campo de manera correcta">
               <div class="validate"></div>
             </div>      
             <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Contraseña" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
+              <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Contraseña" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta">
               <div class="validate"></div>
             </div>           
           </div>          
           <div class="mb-3">
             <div class="error-message"></div>
             <div class="sent-message">Grax!</div>
-          </div>            
-          <div class="text-center"><button href="https://cannelamx.netlify.app/" type="submit">Iniciar Sesión</button></div> <br>          
+          </div>   
+          <input type="hidden" name="opt" value="10" />         
+          <div class="text-center"><button type="submit">Iniciar Sesión</button></div> <br>          
         </form>
 
       </div>
