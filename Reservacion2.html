@@ -93,7 +93,7 @@
           <p>Favor de llenar los siguientes campos con la informaci&oacute;n solicitada ...</p>
         </div>
 
-        <form method="POST" action="forms/reservar_catering.php">
+        <form method="POST" action="connection/principal.php">
           <!--<label for="correo">Correo: </label><br />
            <input type="text" name="correo" id="correo" disabled /> -->
           
@@ -108,11 +108,11 @@
             <div class="validate"></div>
           </div>
 
-          <label for="tipo_evento">Tipo de evento: </label><br />
+          <label for="no_paquete">Tipo de evento: </label><br />
           <div class="col-lg-4 col-md-6 form-group">
-            <input type="radio" name="tipo_evento" id="1" /> <label class="radio-holder" for="1">Paquete 1</label> <br />
-            <input type="radio" name="tipo_evento" id="2" /> <label class="radio-holder" for="2">Paquete 2</label> <br />
-            <input type="radio" name="tipo_evento" id="3" /> <label class="radio-holder" for="3">Paquete 3</label> <br />
+            <input type="radio" name="no_paquete" id="paq1" value="1" /> <label class="radio-holder" for="paq1">Paquete 1</label> <br />
+            <input type="radio" name="no_paquete" id="paq2" value="2" /> <label class="radio-holder" for="paq2">Paquete 2</label> <br />
+            <input type="radio" name="no_paquete" id="paq3" value="3"/> <label class="radio-holder" for="paq3">Paquete 3</label> <br />
           </div>
 
           <label for="descripcion">Descripci&oacute;n de solicitud: </label><br />
@@ -123,12 +123,11 @@
             -->
             <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Descripci&oacute;n de la solicitud"></textarea>
           </div>
-
+          <input type="hidden" name="opt" value="6" />
           <div class="text-center">
             <!---<input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar" />-->
 
-            <button type="submit">Iniciar Sesión</button>
             <input type="submit" value="Enviar">
             <button type="reset">Limpiar</button>
           </div>
@@ -172,10 +171,11 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!--
   <script>
     document.getElementById("email").value = sessionStorage.getItem("email");
     document.getElementById("email").value = "EMAIL@TRAIDODESESION.COM";
-  </script>
+  </script>-->
 
 </body>
 

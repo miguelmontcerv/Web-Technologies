@@ -88,14 +88,14 @@
           <p>Favor de llenar los siguientes campos con la informaci&oacute;n solicitada ...</p>
         </div>
 
-        <form action="forms/registrar.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">        
+        <form action="connection/principal.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">        
           <div class="form-row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta: M&iacute;nimo 4 caract&eacute;res">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta: M&iacute;nimo 4 caract&eacute;res">
+              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido" data-rule="minlen:4" data-msg="Favor de llenar el campo de manera correcta: M&iacute;nimo 4 caract&eacute;res">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
@@ -117,11 +117,17 @@
           </div>          
           <div class="mb-3">
             <div class="error-message"></div>
-            <div class="sent-message">Grax!</div>
+            <div class="sent-message"></div>
           </div>
-            
-          <div class="text-center"><button href="forms/registrar.php" type="submit">Reg&iacute;strate</button></div> <br>          
+          <input type="hidden" name="opt" value="4" />
+          <div class="text-center"><button type="submit">Reg&iacute;strate</button></div> <br>          
         </form>
+      <!-- -->
+      <div class="btns">
+          <br>
+          <div class="text-center"><a href="sesion.html" class="btn-menu animated fadeInUp scrollto">Inicia Sesi&oacute;n</a></div>            
+      </div>  
+
 
       </div>
     </section><!-- End Book A Table Section -->
