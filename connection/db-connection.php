@@ -35,7 +35,10 @@
 			case 5:	
 				#gets row data from catering
 				$query = "SELECT * FROM catering WHERE cmail='{$value}'";
-				break;
+				break; 
+			case 6:
+				$query = "SELECT img FROM pubs WHERE nimg='{$value}'";
+				break;	
 			default: 
 				echo "Erroooor";
 				break;
