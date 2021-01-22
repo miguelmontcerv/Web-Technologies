@@ -36,9 +36,9 @@
             corder($con, $name, $registro);  
             break;
         case 9:
-            $name = $_POST['mail'];
-            $registro=$_POST['reg'];
-            ccatering($con, $name, $registro);
+            $inferior= $_POST['inferior'];
+            $tamanio= $_POST['tamanio'];
+            ccatering($con, $inferior, $tamanio);
             break;
         case 10:
             login($con);  
@@ -50,6 +50,10 @@
             $rol = $_POST['rol'];
             verificarRolSession($rol);
             break;
+        case 13:
+            $no_solicitud= $_POST['no_solicitud'];
+            $estado= $_POST['estado'];
+            actualizarEstadoCatering($con, $no_solicitud, $estado);
         default:
             echo "Error";
     }
@@ -159,18 +163,55 @@
         echo "Registro exitoso";
     }
 
-    #muestra la informaición de 1 orden de catering especifica
-    function ccatering($con, $name, $registro){
-        $result = request(5, $con, $name);
-        $vars=array('nsolic','cmail', 'npack', 'dtime', 'stat');
+    #trae los pedidos de catering
+    function ccatering($con, $inferior, $tamanio) {
+        $result = getPedidosCatering($con, $inferior, $tamanio);
+        $vars=array('nsolic','cmail', 'npack', 'dtime', 'state');
 
         #se muestra toda la información del usuario
+        echo 
+        "<th colspan='5'>Pedidos de catering</th>" .
+        "<tr>" .
+            "<td>No. de solicitud</td>" .
+            "<td>Correo de contacto</td>" .
+            "<td>No. de paquete</td>" .
+            "<td>Fecha</td>" .
+            "<td>Estatus</td>" .
+        "</tr>";
         while($row = mysqli_fetch_array($result)){
-            for ($i=0; $i<5; $i++){
+            for ($i=0; $i < 5; $i++){
                 $list[$i] = $row["{$vars[$i]}"];
-                echo $list[$i]."<br/ >";
             }
+            echo
+            "<tr>" . 
+                "<td>" . $list[0] . "</td>" .
+                "<td>" . $list[1] . "</td>" .
+                "<td>" . $list[2] . "</td>" .
+                "<td>" . $list[3] . "</td>" .
+                "<td>" .
+                    "<select id='catering_cat_" . $list[0] . "' class='select-control' onchange='actualizarEstadoPedidoCatering(this)'>";
+            if($list[4] == "Recibido") {
+                echo "<option value='Recibido' class='select-items' selected>Recibido</option>" .
+                    "<option value='En Proceso' class='select-items'>En Proceso</option>" .
+                    "<option value='Finalizado' class='select-items'>Finalizado</option>"; 
+            }else if($list[4] == "En Proceso") {
+                echo "<option value='Recibido' class='select-items'>Recibido</option>" .
+                    "<option value='En Proceso' class='select-items' selected>En Proceso</option>" .
+                    "<option value='Finalizado' class='select-items'>Finalizado</option>";
+            }else if($list[4] == "Finalizado") {
+                echo "<option value='Recibido' class='select-items'>Recibido</option>" .
+                    "<option value='En Proceso' class='select-items'>En Proceso</option>" .
+                    "<option value='Finalizado' class='select-items' selected>Finalizado</option>";
+            }      
+            echo
+                    "</select>" .
+                "</td>" .
+            "</tr>";
         }  
+    }
+    
+    function actualizarEstadoCatering($con, $no_solicitud, $estado) {
+        $result = actualizarEstadoCateringBD($con, $no_solicitud, $estado);
     }
 
     function spublication($con){   

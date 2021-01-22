@@ -3,7 +3,7 @@
 	//Conectar a la base de datos
 	function conection(){
 		$username="root";
-		$psw="pepepecas1";
+		$psw="n0m3l0";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -48,6 +48,19 @@
 		error($result);
 
 		return $result;
+	}
+
+	function getPedidosCatering($con, $inferior, $superior) {
+		$query= "SELECT * FROM catering LIMIT " . strval($inferior) . ", " . strval($superior) . ";";
+		$result = mysqli_query($con, $query);
+		error($result);
+		return $result;
+	}
+
+	function actualizarEstadoCateringBD($con, $no_solicitud, $estado) {
+		$update= "UPDATE catering SET state='{$estado}' WHERE nsolic='{$no_solicitud}';";
+		$result = mysqli_query($con, $update);
+		error($result);
 	}
 
 	function register($con, $list){

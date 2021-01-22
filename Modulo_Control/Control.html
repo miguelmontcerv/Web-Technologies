@@ -30,7 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="ControlEstilos.css">
 	<script type="text/javascript" src="ControlScript.js"></script>
 </head>
-<body>
+<body onload="getCatering()">
 	<div id="Container" class="container">
 		<div id="LeftContainer" class="left-container">
 			<h1>¡Bienvenido Administrador!</h1>
@@ -50,7 +50,7 @@
 				<a id="Catering"> <h2>Solicitudes de catering</h2> </a>
 				<p>Estos son los pedidos de catering m&aacute;s recientes, aquí podr&aacute;s actualizar el estado en el que se encuentran y guardarlo en la base de datos presionando en actualizar tabla. Podrás ver algunos de los pedidos no tan recientes navegando con el bot&oacute;n de siguientes para llevar un mejor manejo de los servicios de catering ofrecidos.
 				Ten en consideración que una vez que hayas registrado el servicio de catering como finalizado y presiones "Actualizar tabla" este no podr&aacute; ser cambiado nuevamente.</p>
-				<table>
+				<table id="tabla">
 					<th colspan="5">Pedidos de catering</th>
 					<tr>
 						<td>No. de solicitud</td>
@@ -60,7 +60,7 @@
 						<td>Estatus</td>
 					</tr>
 
-					<tr>
+					<!--<tr>
 						<td>123</td>
 						<td>ejemplo123@gmail.com</td>
 						<td>3</td>
@@ -128,13 +128,13 @@
 								<option value="2" class="select-items">Finalizado</option>
 							</select>
 						</td>
-					</tr>
+					</tr>-->
 				</table>
 
 				<div id="btn_nav_catering" style="text-align: right; width: 90%; margin-top: 10px;">
-					<input type="button" class="btn-nav-tab" name="btn_act_catering" id="btn_act_catering" value="Actualizar tabla" style="float: left;">
-					<input type="button" class="btn-nav-tab" name="btn_prev_catering" id="btn_prev_catering" value="< Previos">
-					<input type="button" class="btn-nav-tab" name="btn_prev_catering" id="btn_prev_catering" value="Siguiente >">
+					<input type="button" class="btn-nav-tab" name="btn_act_catering" id="btn_act_catering" value="Actualizar tabla" style="float: left;" onclick="getCatering()"/>
+					<input type="button" class="btn-nav-tab" name="btn_prev_catering" id="btn_prev_catering" value="< Previos" onclick="disminuirRango()" />
+					<input type="button" class="btn-nav-tab" name="btn_prev_catering" id="btn_prev_catering" value="Siguiente >" onclick="aumentarRango()" />
 				</div>
 
 			</div>
@@ -308,6 +308,53 @@
 		function aparecer() {
 			document.getElementById("LeftContainer2").hidden= true;
 			document.getElementById("LeftContainer").hidden= false;
+		}
+
+		var inferior= 0;
+		var tamanio= 5;
+		function getCatering() {
+			var parametros= {
+				"opt": 9,
+				"inferior": inferior,
+				"tamanio": tamanio
+			}
+			$.ajax({
+				data: parametros,
+				url: "../connection/principal.php",
+				type: "post",
+				beforeSend: function() {
+					document.getElementById("tabla").innerHTML= "Cargando...";
+				},
+				success: function(response) {
+					document.getElementById("tabla").innerHTML= response;
+				}
+			});
+		}
+		function aumentarRango() {
+			inferior+= tamanio;
+			getCatering();
+		}
+		function disminuirRango() {
+			if(inferior != 0) {
+				inferior-= tamanio;
+			}
+			getCatering();
+		}
+
+		function actualizarEstadoPedidoCatering(combo) {
+			console.log(combo);
+			var estado= combo.value;
+			var no_solicitud= combo.id.replace("catering_cat_", "");
+			var parametros= {
+				"opt": 13,
+				"no_solicitud": no_solicitud,
+				"estado": estado
+			}
+			$.ajax({
+				data: parametros,
+				url: "../connection/principal.php",
+				type: "post"
+			});
 		}
 	</script>
 </body>
