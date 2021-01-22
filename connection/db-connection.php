@@ -15,6 +15,8 @@
 	}
 
 	function request($option, $con, $value){
+		
+		$query = "";
 		switch($option){
 			case 1:
 				#gets menu products
@@ -43,10 +45,9 @@
 				echo "Erroooor";
 				break;
 		}
-
+		
 		$result = mysqli_query($con, $query);
 		error($result);
-
 		return $result;
 	}
 
