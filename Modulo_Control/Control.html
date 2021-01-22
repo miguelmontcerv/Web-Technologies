@@ -274,7 +274,9 @@
 
 				<img src="Control_Images/administrador.png" class="img-user" alt="Imagen del usuario" />
 				<h2>Nombre del usuario</h2>
-				<input type="button" class="btn-perfil" onclick="esconder()" name="btn_perfil" id="btn_perfil" value="Ver perfil">
+				<input type="button" class="btn-perfil" onclick="esconder()" name="btn_perfil" id="btn_perfil" value="Ver perfil" />
+				<br /><br />
+				<input type="button" class="btn-perfil" onclick="cerrar_sesion()" name="btn_perfil" id="btn_perfil" value="Cerrar sesión" />
 			</div>
 			<div id="menuControl" class="menu-control">
 				<ul>
@@ -342,7 +344,6 @@
 		}
 
 		function actualizarEstadoPedidoCatering(combo) {
-			console.log(combo);
 			var estado= combo.value;
 			var no_solicitud= combo.id.replace("catering_cat_", "");
 			var parametros= {
@@ -354,6 +355,20 @@
 				data: parametros,
 				url: "../connection/principal.php",
 				type: "post"
+			});
+		}
+
+		function cerrar_sesion() {
+			var parametros= {
+				"opt": 14
+			}
+			$.ajax({
+				data: parametros,
+				url: "../connection/principal.php",
+				type: "post",
+				success: function(response) {
+					location.replace("/index.html");
+				}
 			});
 		}
 	</script>

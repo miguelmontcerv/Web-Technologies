@@ -55,6 +55,11 @@
             $no_solicitud= $_POST['no_solicitud'];
             $estado= $_POST['estado'];
             actualizarEstadoCatering($con, $no_solicitud, $estado);
+        case 14:
+            session_start();
+            session_unset();
+            session_destroy();
+            die();
         default:
             echo "Error";
     }
@@ -92,7 +97,7 @@
             for ($i=0; $i<4; $i++){
                 echo '<div class="col-lg-4 col-md-6 form-group">' .
                         '<label>' . $encabezados[$i] . ': </label>' .
-                        '<input type="text" name="' . $vars[$i] . '" class="form-control" id="' . $vars[$i] . '" value="' . $list[$i] . '" disabled />' .
+                        '<input type="text" name="' . $vars[$i] . '" class="form-control" id="' . $vars[$i] . '" value="' . $list[$vars[$i]] . '" disabled />' .
                     '</div> <br />';
             }
         }  
