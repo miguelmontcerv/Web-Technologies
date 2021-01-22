@@ -57,6 +57,13 @@
 		return $result;
 	}
 
+	function getNombreCliente($con, $email) {
+		$query= "SELECT nom FROM profiledata WHERE mail='{$email}';";
+		$result = mysqli_query($con, $query);
+		error($result);
+		return $result;
+	}
+
 	function actualizarEstadoCateringBD($con, $no_solicitud, $estado) {
 		$update= "UPDATE catering SET state='{$estado}' WHERE nsolic='{$no_solicitud}';";
 		$result = mysqli_query($con, $update);

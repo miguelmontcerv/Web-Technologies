@@ -1,5 +1,6 @@
 <?php
     include("db-connection.php");
+    include("correo.php");
 
     $option = $_POST['opt'];
 
@@ -151,7 +152,7 @@
             die();
         }
 
-        $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
+        $email= $_SESSION['email'];
 
         $lugar= $_POST['lugar'];
         $no_paquete= $_POST['no_paquete'];
@@ -159,7 +160,12 @@
 
         $response= registrarCatering($con, $email, $no_paquete);
         //traemos datos cliente para correo
-        $nombre_cliente= "David";
+        $response2= getNombreCliente($con, $email);
+        $nombre_cliente= "";
+        while($row = mysqli_fetch_array($response2)){
+            $nombre_cliente= $row["nom"];
+        }
+        enviarCorreoCatering($nombre_cliente, $email, $no_paquete, $lugar, $descripcion);
         echo "Registro exitoso";
     }
 
