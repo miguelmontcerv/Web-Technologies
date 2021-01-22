@@ -91,7 +91,7 @@
 			}
 			else{
 				echo "Inicio de Sesión Exitoso";
-				echo '<br><a href="pdf/orden.html">¡Reserva Ahora!</a>';
+				echo '<br><a href="PDF/Orden.php">¡Ordena y Reserva Ahora!</a>';
 			}				
 		} else{
 			echo "Datos Incorrectos";
