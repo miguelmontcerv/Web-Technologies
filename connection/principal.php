@@ -140,10 +140,11 @@
 
     #guarda orden de catering
     function scater($con){
+        session_start();
         if(!isset($_SESSION)) {
-            //echo "<script>alert('Sesión no reconocida');</script>";
+            echo "<script>alert('Sesión no reconocida');</script>";
             //header("Location: http://google.com/search?Sesión%20No%20Reconocida");
-            //die();
+            die();
         }
 
         $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
