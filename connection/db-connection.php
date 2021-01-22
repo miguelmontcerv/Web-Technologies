@@ -88,13 +88,16 @@
 			if($mail == 'mokef2000@gmail.com'){
 				echo "Inicio de Sesión Exitoso, Bienvenido Administrador";
 				echo '<br><a href="Modulo_Control/Control.html">¡Comienza a Administrar!</a>';
+				return 1;
 			}
 			else{
 				echo "Inicio de Sesión Exitoso";
 				echo '<br><a href="PDF/Orden.php">¡Ordena y Reserva Ahora!</a>';
+				return 2;
 			}				
 		} else{
 			echo "Datos Incorrectos";
+			return 0;
 		}
 	}
 

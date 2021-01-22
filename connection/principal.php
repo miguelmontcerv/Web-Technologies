@@ -120,7 +120,16 @@
         $mail = $_POST['email'];
         $contr = $_POST['contrasenia'];
 
-        login_f($con,$mail,$contr);
+        $sesion= login_f($con,$mail,$contr);
+        if($sesion != 0) {
+            session_start();
+            $_SESSION['email']= $mail;
+            if($sesion == 1){
+                $_SESSION['rol']= "admin";
+            }else {
+                $_SESSION['rol']= "client";
+            }
+        }
     }
 
     #guarda una orden
