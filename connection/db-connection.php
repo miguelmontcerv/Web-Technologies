@@ -3,7 +3,7 @@
 	//Conectar a la base de datos
 	function conection(){
 		$username="root";
-		$psw="n0m3l0";
+		$psw="pepepecas1";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -15,8 +15,6 @@
 	}
 
 	function request($option, $con, $value){
-		
-		$query = "";
 		switch($option){
 			case 1:
 				#gets menu products
@@ -45,9 +43,10 @@
 				echo "Erroooor";
 				break;
 		}
-		
+
 		$result = mysqli_query($con, $query);
 		error($result);
+
 		return $result;
 	}
 
@@ -69,17 +68,14 @@
 			if($mail == 'mokef2000@gmail.com'){
 				echo "Inicio de Sesión Exitoso, Bienvenido Administrador";
 				echo '<br><a href="Modulo_Control/Control.html">¡Comienza a Administrar!</a>';
-				return 1;
 			}
 			else{
 				echo "Inicio de Sesión Exitoso";
 				echo '<br><a href="pdf/orden.html">¡Reserva Ahora!</a>';
-				return 2;
-			}
+			}				
 		} else{
 			echo "Datos Incorrectos";
 		}
-		return 0;
 	}
 
 	function order ($con, $list){
