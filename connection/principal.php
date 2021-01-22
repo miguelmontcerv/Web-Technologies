@@ -4,7 +4,7 @@
     $option = $_POST['opt'];
 
     $con = conection();
-
+    
     switch($option){
         case 1:
             listmenu($con);
@@ -14,9 +14,9 @@
             menuitem($con, $name);
             break;
         case 3:
-            session_start();
-            $email= $_SESSION['email'];
-            usrdata($con, $email);
+            $name = $_POST['mail'];
+            $registro=$_POST['reg'];
+            usrdata($con, $name, $registro);
             break; 
         case 4:
             sregister($con);  
@@ -70,23 +70,23 @@
     }
 
    #obtiene la información de 1 usuario en específico.  
-    function usrdata($con, $email){
-        $result = request(3, $con, "mokef2000@gmail.com");
-        $vars= array('nom', 'ln', 'mail', 'phone');
-        $encabezados= array('Nombre', 'Apellido', 'Correo', 'Tel&eacute;fono');
+    function usrdata($con, $name, $registro){
+        $result = request(3, $con, $name);
+        $row = mysqli_fetch_row($result);
+        $vars=array('nom', 'ln', 'mail', 'rol', 'phone');
+
         #muestra un atrubuto de la tabla 'profiledata', definido por $reg en $row["{$reg}"].
         #$reg = columna que se desea visualizar: 0-correo, 1-contraseña, 2-rol, 3-nombre, 4-apellido, 5-telefono
-        //echo $row["{$registro}"];
+        echo $row["{$registro}"];
+
         #se muestra toda la información del usuario
         while($row = mysqli_fetch_array($result)){
-            for ($i=0; $i < 4; $i++){
+            for ($i=0; $i<5; $i++){
                 $list[$i] = $row["{$vars[$i]}"];
-                echo '<div class="col-lg-4 col-md-6 form-group">' .
-                        '<label>' . $encabezados[$i] . ': </label>' .
-                        '<input type="text" name="' . $vars[$i] . '" class="form-control" id="' . $vars[$i] . '" value="' . $list[$i] . '" disabled />' .
-                    '</div> <br />';
+                echo $list[$i]."<br/ >";
             }
-        } 
+        }  
+        #return $row;
     }
 
     #registra a un usuario
@@ -105,17 +105,7 @@
         $mail = $_POST['email'];
         $contr = $_POST['contrasenia'];
 
-        $sesion= login_f($con,$mail,$contr);
-        if($sesion != 0) {
-            session_start();
-            $_SESSION['email']= $mail;
-            if($sesion == 1){
-                $_SESSION['rol']= "admin";
-            }else {
-                $_SESSION['rol']= "client";
-            }
-            echo $_SESSION['rol'];
-        }
+        login_f($con,$mail,$contr);
     }
 
     #guarda una orden
@@ -145,15 +135,13 @@
 
     #guarda orden de catering
     function scater($con){
-        session_start();
         if(!isset($_SESSION)) {
-            echo "<script>alert('Sesión no reconocida');</script>";
+            //echo "<script>alert('Sesión no reconocida');</script>";
             //header("Location: http://google.com/search?Sesión%20No%20Reconocida");
-            die();
+            //die();
         }
 
-        $email= $_SESSION['email'];
-        echo $email;
+        $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
 
         $lugar= $_POST['lugar'];
         $no_paquete= $_POST['no_paquete'];
