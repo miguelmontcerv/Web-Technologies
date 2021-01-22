@@ -3,7 +3,7 @@
 	//Conectar a la base de datos
 	function conection(){
 		$username="root";
-		$psw="pepepecas1";
+		$psw="n0m3l0";
 		$server="localhost";
 		$dbname="cannela";
 	
@@ -68,14 +68,17 @@
 			if($mail == 'mokef2000@gmail.com'){
 				echo "Inicio de Sesión Exitoso, Bienvenido Administrador";
 				echo '<br><a href="Modulo_Control/Control.html">¡Comienza a Administrar!</a>';
+				return 1;
 			}
 			else{
 				echo "Inicio de Sesión Exitoso";
 				echo '<br><a href="pdf/orden.html">¡Reserva Ahora!</a>';
-			}				
+				return 2;
+			}
 		} else{
 			echo "Datos Incorrectos";
 		}
+		return 0;
 	}
 
 	function order ($con, $list){

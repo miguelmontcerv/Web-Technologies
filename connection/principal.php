@@ -105,7 +105,17 @@
         $mail = $_POST['email'];
         $contr = $_POST['contrasenia'];
 
-        login_f($con,$mail,$contr);
+        $sesion= login_f($con,$mail,$contr);
+        if($sesion != 0) {
+            session_start();
+            $_SESSION['email']= $mail;
+            if($sesion == 1){
+                $_SESSION['rol']= "admin";
+            }else {
+                $_SESSION['rol']= "client";
+            }
+            echo $_SESSION['rol'];
+        }
     }
 
     #guarda una orden
@@ -135,13 +145,15 @@
 
     #guarda orden de catering
     function scater($con){
+        session_start();
         if(!isset($_SESSION)) {
-            //echo "<script>alert('Sesión no reconocida');</script>";
+            echo "<script>alert('Sesión no reconocida');</script>";
             //header("Location: http://google.com/search?Sesión%20No%20Reconocida");
-            //die();
+            die();
         }
 
-        $email= "madrigal.bd@gmail.com";//$_SESSION['data'];
+        $email= $_SESSION['email'];
+        echo $email;
 
         $lugar= $_POST['lugar'];
         $no_paquete= $_POST['no_paquete'];
