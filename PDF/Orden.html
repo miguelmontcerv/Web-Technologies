@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cafeteria Cannela Mx</title>
+
+    <!--jquery-->
+    <script src="jquery-3.5.1.min.js"></script>
+
+    <script type="text/javascript">
+        function productoSelected(precio, producto){
+            var cantidad = prompt("Cuantos pedidos de este producto desea ordenar?");
+            if(cantidad == null  || isNaN(cantidad) || cantidad == ""){
+                alert("Por favor introduzca una cantidad valida >:c");
+            }else{
+                var nuevo = precio;
+
+                var previo = $('#Precio').val()            
+                if(previo == ""){
+                    previo = 0;
+                }
+                $('#Precio').val(parseFloat(previo) + (parseFloat(nuevo) * cantidad));
+
+                $('#correo').val("tdwdavid76@gmail.com");
+
+                $('#numOrder').val("1");
+
+                $('#submit')
+                    .show(100);
+                $('#borrar')
+                    .show(100);
+                var lista = $('#OrdenContent').val();
+               $('#OrdenContent').val(lista + producto + ".........." + cantidad + "\n"); 
+            }
+        }
+
+        function borrarOrden(){
+            $('#Precio').val("");     
+            $('#correo').val("");
+            $('#numOrder').val("");
+            $('#OrdenContent').val("");
+ 
+            $("#submit").hide();
+            $("#borrar").hide();
+       
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="OrdenEstilos.css">
+</head>
+<body>
+    <div id="Container" class="container">
+        <div id="Titulo" class="titulo">
+            <h1>Ordene algo directamente a Caf&eacute; Cannela Mx!</h1>
+            <h3>Es facil y rapido</h3>
+            <p class="descripcion">Selecciona los productos que vas a ordenar, haz click en ellos y selecciona la cantidad, posteriormente, ve hasta la aparte abajo y da click en comprar, se te mandara tu ticket a tu correo y 
+            cuando vayas a recoger tu pedido unicamente tendras que presentar tu ticket!!</p>
+        </div>
+        <div id="Pedidos" style="height: 100%">
+            <div id="Row" class="row">
+                <div id="Producto" class="producto" onclick="productoSelected(50, 'Frapuccino')">                  
+                    <img src="Orden_Images/Frapuccino3.png" class="img-prod" alt="Imagen del producto" />
+
+
+                    <div id="Frapuccino" class="info">
+                      
+                        <h2>Frapuccino</h2>
+                        <h4 id="precioFrapuccino">Precio: $50.00</h4>
+                        <p> Se compone de caf&eacute; u otro ingrediente de base, mezclado con hielo y otros ingredientes diversos, coronado con crema batida.</p>
+                    </div>
+                </div>
+
+                <div id="Producto2" class="producto" onclick="productoSelected(45, 'Macchiato')">                  
+                    <img src="Orden_Images/Macchiato.jpg" class="img-prod" alt="Imagen del producto" />
+
+                    <div id="Macchiato" class="info">
+                      
+                        <h2>Macchiato</h2>
+                        <h4 id="precioMacchiato">Precio: $45.00</h4>
+                        <p> Es un caf&eacute; cortado t&iacute;pico de Italia, consiste en un expreso con una peque&ntilde;a cantidad de leche caliente y espumada. Se diferencia de modo significativo del caf&eacute; con leche porque solo se utiliza 1/2 tiro de expreso (o menos). Es muy bueno.
+                        </p>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="Row2" class="row">
+                <div id="Producto3" class="producto" onclick="productoSelected(325, 'Cheesecake')">                  
+                    <img src="Orden_Images/Cheesecake.jpg" class="img-prod" alt="Imagen del producto" />
+
+
+                    <div id="Cheesecake" class="info">
+                      
+                        <h2 id="precioCheesecake">New York Cheesecake</h2>
+                        <h4>Precio: $325.00</h4>
+                        <p> Delicioso Cheescake estilo New York, preparado por los mejores maestros panaderos y reposteros de la CDMX, puede ser preparado con frutos rojos o &uacute;nicamente con fresa.</p>
+                    </div>
+                </div>
+
+                <div id="Producto4" class="producto" onclick="productoSelected(78, 'Bombas de chocolate')">                  
+                    <img src="Orden_Images/Bombas.jpg" class="img-prod" alt="Imagen del producto" />
+
+                    <div id="Bombas" class="info">
+                      
+                        <h2>Bombas de chocolate</h2>
+                        <h4 id="precioBombas">Precio: $78.00</h4>
+                        <p> Deliciosos chocolates de chocolate abuelita o cacao, Matcha y malvaviscos
+                            Hechas de chocolate blanco con leche y semi amargo si las quieres de regalo, ordena tu cajita con o sin decoraci&oacute;n.</p>
+                    </div>
+                </div>    
+            </div>
+
+        </div>
+
+        <div id="TicketData" class="ticket-data">
+            <form method="post" name="form" action="OrdenPDF.php">
+                
+                <div id="contenidoForm" class="row">
+                    <div class="form-elem">
+                        <label>No. de Orden: </label>
+                        <input type="number" name="numOrder" id="numOrder" readonly="readonly" class="data-orden noselect">    
+                    </div>
+                    <br /><br />
+                    <div class="form-elem">
+                        <label>Correo de usuario: </label>
+                        <input type="email" name="correo" id="correo" readonly="readonly" class="data-orden noselect">    
+                    </div>
+                    <br /><br />
+                    <div class="form-elem">
+                        <label>Precio a pagar en MXN: </label>
+                        <input type="number" name="Precio" id="Precio" readonly="readonly" class="data-orden noselect">
+                    </div>
+                    <br /><br />
+                </div>
+                <label>Lista de productos: </label>
+                <textarea id="OrdenContent" name="OrdenContent" readonly="readonly" class="data-list" rows="10"></textarea>
+                <br /><br />
+                
+                <input type="submit" value="Enviar Ticket" class="btn-publicar" id="submit" name="submit" >
+                <input type="button" value="Borrar orden" class="btn-publicar" id="borrar" name="borrar" onclick="borrarOrden()">
+            </form>
+        </div>
+    </div>
+        
+
+</body>
+</html>
