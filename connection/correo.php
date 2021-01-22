@@ -3,9 +3,9 @@
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\SMTP;
 
-    require("../PDF/PHPMailer-master/src/PHPMailer.php");
-    require("../PDF/PHPMailer-master/src/SMTP.php");
-    require("../PDF/PHPMailer-master/src/Exception.php");
+    require("../PDF/PHPMailer/PHPMailer.php");
+    require("../PDF/PHPMailer/SMTP.php");
+    require("../PDF/PHPMailer/Exception.php");
 
     function enviarCorreoCatering($nombre_cliente, $email, $paquete, $lugar, $descripcion){
         $mail = new PHPMailer(true);
