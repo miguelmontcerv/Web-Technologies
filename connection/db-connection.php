@@ -11,7 +11,7 @@
 			echo "error al conectar la BD";
 			exit();
 		}
-	return $con;
+		return $con;
 	}
 
 	function request($option, $con, $value){
@@ -57,6 +57,13 @@
 		return $result;
 	}
 
+	function getOrdenes($con, $inferior, $superior) {
+		$query= "SELECT * FROM orders LIMIT " . strval($inferior) . ", " . strval($superior) . ";";
+		$result = mysqli_query($con, $query);
+		error($result);
+		return $result;
+	}
+
 	function getNombreCliente($con, $email) {
 		$query= "SELECT nom FROM profiledata WHERE mail='{$email}';";
 		$result = mysqli_query($con, $query);
@@ -66,6 +73,12 @@
 
 	function actualizarEstadoCateringBD($con, $no_solicitud, $estado) {
 		$update= "UPDATE catering SET state='{$estado}' WHERE nsolic='{$no_solicitud}';";
+		$result = mysqli_query($con, $update);
+		error($result);
+	}
+
+	function actualizarEstadoOrdenBD($con, $no_order, $estado) {
+		$update= "UPDATE orders SET stat='{$estado}' WHERE norder='{$no_order}';";
 		$result = mysqli_query($con, $update);
 		error($result);
 	}
@@ -87,12 +100,13 @@
 
 			if($mail == 'mokef2000@gmail.com'){
 				echo "Inicio de Sesión Exitoso, Bienvenido Administrador";
-				echo '<br><a href="Modulo_Control/Control.html">¡Comienza a Administrar!</a>';
+				echo '<br><a href="Modulo_Control/Control.php">¡Comienza a Administrar!</a>';
 				return 1;
 			}
 			else{
 				echo "Inicio de Sesión Exitoso";
 				echo '<br><a href="PDF/Orden.php">¡Ordena y Reserva Ahora!</a>';
+				echo '<br><a href="Reservacion2.html">¡Contrata un servicio de Catering!</a>';
 				return 2;
 			}				
 		} else{
@@ -101,8 +115,9 @@
 		}
 	}
 
-	function order ($con, $list){
-		$query ="INSERT INTO orders (omail, stat,msg, bill) VALUES ('{$list[0]}','recibido','{$list[1]}', '{$list[2]}')";
+	function order ($con, $Correo, $Mensaje, $Precio){
+		echo $Correo;
+		$query ="INSERT INTO orders (omail, stat, msg, bill) VALUES ('{$Correo}','Orden recibida','{$Mensaje}', '{$Precio}')";
 		$result=mysqli_query($con, $query);
 		error($result);
 	}

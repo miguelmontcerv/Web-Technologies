@@ -8,9 +8,9 @@
 
     <script type="text/javascript">
         function productoSelected(total, producto){
-            var cantidad = prompt("Cuantos pedidos de este producto desea ordenar?");
+            var cantidad = prompt("¿Cuántos pedidos de este producto desea ordenar?");
             if(isNaN(cantidad) || cantidad == ""){
-                alert("Por favor introduzca una cantidad valida >:c");
+                alert("Por favor introduzca una cantidad válida >:c");
             }else if(!(cantidad == null) ){
                 var nuevo = total;
 
@@ -50,7 +50,7 @@
 
         function borrarOrden(){
             $('#total').val("");     
-            $('#mail').val("");
+            //$('#mail').val("");
             $('#numOrder').val("");
             $('#msj').val("");
  
@@ -80,11 +80,11 @@
     <?php session_start(); ?>
     
     <div id="Container" class="container">
-        <div id="Titulo" class="titulo">
+    <div id="Titulo" class="titulo">
             <h1>Ordene algo directamente a Caf&eacute; Cannela Mx!</h1>
-            <h3>Es facil y rapido</h3>
+            <h3>Es f&aacute;cil y r&aacute;pido</h3>
             <p class="descripcion">Selecciona los productos que vas a ordenar, haz click en ellos y selecciona la cantidad, posteriormente, ve hasta la aparte abajo y da click en comprar, se te mandara tu ticket a tu mail y 
-            cuando vayas a recoger tu pedido unicamente tendras que presentar tu ticket!!</p>
+            cuando vayas a recoger tu pedido &uacute;nicamente tendr&aacute;s que presentar tu ticket!!</p>
         </div>
         <div id="Pedidos" style="height: 100%">
             <div id="Row" class="row">
@@ -96,7 +96,7 @@
                       
                         <h2>Frapuccino</h2>
                         <h4 id="totalFrapuccino">Precio: $50.00</h4>
-                        <p> Se compone de caf&eacute; u otro ingrediente de base, mezclado con hielo y otros ingredientes diversos, coronado con crema batida.</p>
+                        <p> Se compone de caf&eacute; u otro ingrediente de base, mezclado con hielo y otros ingredientes diversos, coronado con crema batida. </p>
                     </div>
                 </div>
 
@@ -146,10 +146,10 @@
 
                     <div id="Cafe" class="info">
                       
-                        <h2 id="precioCafe">Cafe con leche</h2>
+                        <h2 id="precioCafe">Caf&eacute; con leche</h2>
                         <h4>Precio: $50.00</h4>
-                        <p> Cafe con leche. Lleva caf&eacute; y leche, asi que es caf&eacute; con leche. Un clasico, de veras, cafes hay muchos, pero con leche pocos, tiene 
-                        la cantidad perfecta de cafe&eacute;. Y leche.</p>
+                        <p> Caf&eacute; con leche. Lleva caf&eacute; y leche, as&iacute; que es caf&eacute; con leche. Un cl&aacute;sico, de veras, caf&eacute;s hay muchos, pero con leche pocos, tiene 
+                        la cantidad perfecta de caf&eacute;. Y leche.</p>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
                       
                         <h2>Pastel navide&ntilde;o</h2>
                         <h4 id="precioPaste">Precio: $500.00</h4>
-                        <p> Que se puede decir, navidad nunca pasa de moda. Delicioso pastel navide&ntilde;o incluso si es halloween, nada mejor para degustar junto a un clasico caf&eacute; con leche,
+                        <p> Que se puede decir, Navidad nunca pasa de moda. Delicioso pastel navide&ntilde;o incluso si es Halloween, nada mejor para degustar junto a un cl&aacute;sico caf&eacute; con leche,
                         ya sabes, el que lleva caf&eacute; y leche</p>
                     </div>
                 </div>    
@@ -215,7 +215,5 @@
             </form>
         </div>
     </div>
-        
-
 </body>
 </html>

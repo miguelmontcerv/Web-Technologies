@@ -32,9 +32,9 @@
             spublication($con);
             break;
         case 8:
-            $name = $_POST['mail'];
-            $registro=$_POST['reg'];
-            corder($con, $name, $registro);  
+            $inferior= $_POST['inferior'];
+            $tamanio= $_POST['tamanio'];
+            corder($con, $inferior, $tamanio);  
             break;
         case 9:
             $inferior= $_POST['inferior'];
@@ -60,6 +60,11 @@
             session_unset();
             session_destroy();
             die();
+        case 15:
+            $no_orden= $_POST['no_orden'];
+            $estado= $_POST['estado'];
+            actualizarEstadoOrden($con, $no_orden, $estado);
+            break;
         default:
             echo "Error";
     }
@@ -133,28 +138,59 @@
     }
 
     #guarda una orden
-    function sorder($con){
+    /*function sorder($con){
         $vars=array('mail', 'msj', 'total');
         #obtiene los valores del formulario para orden (nombre de los campos)
         for ($i=0; $i<3; $i++){
             $list[$i] = $_POST["{$vars[$i]}"];
         }
         order($con,$list);
-    }
+    }*/
 
     #obtiene la información de una orden específica
-    function corder($con, $name, $registro){
-        $result = request(4, $con, $name);
-        $vars=array('norder','omail', 'stat', 'msg', 'bill');
+    function corder($con, $inferior, $tamanio){
+        $result = getOrdenes($con, $inferior, $tamanio);
+        $vars=array('norder', 'omail', 'msg', 'stat');
 
-        #(prueba)se muestra toda la información del usuario
+        #se muestra toda la información del usuario
+        echo 
+        "<th colspan='4'>Ordenes del d&iacute;a</th>" .
+        "<tr>" .
+            "<td>Codigo de pedido</td>" .
+            "<td>Correo de contacto</td>" .
+            "<td>Mensaje</td>" .
+            "<td>Estatus</td>" .
+        "</tr>";
+
         while($row = mysqli_fetch_array($result)){
-            for ($i=0; $i<5; $i++){
+            for ($i=0; $i < 4; $i++){
                 $list[$i] = $row["{$vars[$i]}"];
-                echo $list[$i]."<br/ >";
             }
-        }  
-        #return $row;
+            echo
+            "<tr>" . 
+                "<td>" . $list[0] . "</td>" .
+                "<td>" . $list[1] . "</td>" .
+                "<td>" . $list[2] . "</td>" .
+                "<td>" .
+                    "<select id='catering_ord_" . $list[0] . "' class='select-control' onchange='actualizarEstadoOrden(this)'>";
+            if($list[3] == "Orden recibida") {
+                echo "<option value='Orden recibida' class='select-items' selected>Orden recibida</option>" .
+                    "<option value='Orden lista' class='select-items'>Orden lista</option>" .
+                    "<option value='Orden entregada' class='select-items'>Orden entregada</option>"; 
+            }else if($list[3] == "Orden lista") {
+                echo "<option value='Orden recibida' class='select-items'>Orden recibida</option>" .
+                    "<option value='Orden lista' class='select-items' selected>Orden lista</option>" .
+                    "<option value='Orden entregada' class='select-items'>Orden entregada</option>"; 
+            }else if($list[3] == "Orden entregada") {
+                echo "<option value='Orden recibida' class='select-items' >Orden recibida</option>" .
+                    "<option value='Orden lista' class='select-items'>Orden lista</option>" .
+                    "<option value='Orden entregada' class='select-items' selected>Orden entregada</option>"; 
+            }      
+            echo
+                    "</select>" .
+                "</td>" .
+            "</tr>";
+        }
     }
 
     #guarda orden de catering
@@ -232,6 +268,10 @@
     
     function actualizarEstadoCatering($con, $no_solicitud, $estado) {
         $result = actualizarEstadoCateringBD($con, $no_solicitud, $estado);
+    }
+
+    function actualizarEstadoOrden($con, $no_orden, $estado) {
+        $result = actualizarEstadoOrdenBD($con, $no_orden, $estado);
     }
 
     function spublication($con){   

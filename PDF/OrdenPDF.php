@@ -1,6 +1,6 @@
 <?php
 	include('fpdf182/fpdf.php');
-    include("/Frontend-main/connection/db-connection.php");
+    include("../connection/db-connection.php");
 
 	use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -14,6 +14,9 @@
 	$numOrder = $_POST['numOrder']; 
 	$Correo = $_POST['mail'];
     $Precio  = $_POST['total'];
+    $Mensaje = $_POST['msj'];
+
+    order(conection(), $Correo, $Mensaje, $Precio);
 
 	class PDF extends FPDF{
 
@@ -44,7 +47,7 @@
         }
 	}
 
-
+    date_default_timezone_set('America/Mexico_City');
 	$pdf = new PDF();
 	$pdf->AddPage();
 	$pdf->SetFont('Helvetica', 'B', 12);
@@ -53,8 +56,8 @@
 	$pdf->Cell(40, 15, 'Orden del pedido No.'.$numOrder,0,1);
 	$pdf->Cell(40, 15, 'Correo del usuario: '.$Correo,0,1);
 	$pdf->Cell(40, 15, 'Estatus: Entregado',0,1);
-	$pdf->Cell(40, 15, 'Hora del pedido: 08:47 17/01/2021',0,1);
-    $pdf->MultiCell(40, 15,  htmlspecialchars($_POST['msj']), 0, 1);
+	$pdf->Cell(40, 15, 'Hora del pedido: '.date("Y/m/d").' a las '.date("H:i:s"),0,1);
+    $pdf->MultiCell(150, 15,  htmlspecialchars($_POST['msj']), 0, 1);
 	$pdf->Cell(40, 15, 'Precio: $ '.$Precio,0,1);
 
 	$pdf->Cell(40, 7, '=========================================================================',0, 1);

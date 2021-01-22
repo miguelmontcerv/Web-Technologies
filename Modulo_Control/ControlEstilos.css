@@ -5,6 +5,34 @@ body{
 	margin: 0;
 }
 
+label{
+	justify-content: center;
+	text-align: center;
+    vertical-align: middle;
+    display: flex; 
+	padding: 1.2%;
+	margin-left: 15%;
+	margin-right: 15%;
+	background-color: transparent;
+	color: #CDA45E;
+	font-size: 20px;
+}
+
+label+input[type="text"]{
+	justify-content: center;
+	text-align: center;
+    vertical-align: middle;
+    display: flex; 
+	padding: 2%;
+	width: 80%;
+	margin-left: 10%;
+	background-color: transparent;
+	color: #CDA45E;
+	font-size: 20px;
+	border-radius: 15px;
+	border: 2.5px solid #CDA45E;
+}
+
 h1{
 	font-family: "Playfair Display", serif;
 	font-size: 3rem;
