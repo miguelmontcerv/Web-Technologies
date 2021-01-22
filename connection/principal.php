@@ -14,9 +14,9 @@
             menuitem($con, $name);
             break;
         case 3:
-            $name = $_POST['mail'];
-            $registro=$_POST['reg'];
-            usrdata($con, $name, $registro);
+            session_start();
+            $email= $_SESSION['email'];
+            usrdata($con, $email);
             break; 
         case 4:
             sregister($con);  
@@ -83,7 +83,7 @@
        // echo $row["{$registro}"];
 
         #se muestra toda la información del usuario
-        while($row = mysqli_fetch_array($result)){
+        while($list = mysqli_fetch_array($result)){
             for ($i=0; $i<4; $i++){
                 echo '<div class="col-lg-4 col-md-6 form-group">' .
                         '<label>' . $encabezados[$i] . ': </label>' .

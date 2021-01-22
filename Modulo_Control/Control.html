@@ -255,12 +255,18 @@
 					<input type="button" class="btn-nav-tab" name="btn_prev_pedidos" id="btn_prev_pedidos" value="< Previos">
 					<input type="button" class="btn-nav-tab" name="btn_prev_pedidos" id="btn_prev_pedidos" value="Siguiente >">
 				</div>
-
 			</div>
-
 		</div>
 
-
+		<div id="LeftContainer2" class="left-container" style="height: 100vh; padding-bottom: 0vh;">
+			<div id="sectionPedidos" >
+				<a id="Pedidos"><h2>Perfil Admin</h2></a>
+				<p>Información de Admin:</p>
+				<div id="datos" class="form-row">
+					
+				</div>
+			</div>
+		</div>
 
 		<div id="RightContainer" class="right-container">
 
@@ -268,22 +274,41 @@
 
 				<img src="Control_Images/administrador.png" class="img-user" alt="Imagen del usuario" />
 				<h2>Nombre del usuario</h2>
-				<input type="button" class="btn-perfil" name="btn_perfil" id="btn_perfil" onclick="href('Perfil_Admin.html');" value="Ver perfil">
-				
+				<input type="button" class="btn-perfil" onclick="esconder()" name="btn_perfil" id="btn_perfil" value="Ver perfil">
 			</div>
-
 			<div id="menuControl" class="menu-control">
 				<ul>
-					<li><a href="#Introduccion" class="nav-element active">Introducci&oacute;n</a></li>
-					<li><a href="#Catering" class="nav-element">Solicitudes de catering</a></li>
-					<li><a href="#Publicaciones" class="nav-element">Publicaci&oacute;n semanal</a></li>
-					<li><a href="#Pedidos" class="nav-element">Pedidos recientes</a></li>
+					<li><a href="#Introduccion" onclick="aparecer()" class="nav-element active">Introducci&oacute;n</a></li>
+					<li><a href="#Catering" onclick="aparecer()" class="nav-element">Solicitudes de catering</a></li>
+					<li><a href="#Publicaciones" onclick="aparecer()" class="nav-element">Publicaci&oacute;n semanal</a></li>
+					<li><a href="#Pedidos" onclick="aparecer()" class="nav-element">Pedidos recientes</a></li>
 				</ul>
 			</div>
-			
 		</div>	
 	</div>
-		
-
+	<script>
+		function esconder(){
+			var parametros= {
+				"opt": 3
+			}
+			$.ajax({
+				data: parametros,
+				url: "../connection/principal.php",
+				type: "post",
+				beforeSend: function() {
+					document.getElementById("datos").innerHTML= "Cargando...";
+					document.getElementById("LeftContainer2").hidden= false;
+				},
+				success: function(response) {
+					document.getElementById("datos").innerHTML= response;
+				}
+			});
+			document.getElementById("LeftContainer").hidden= true;
+		}
+		function aparecer() {
+			document.getElementById("LeftContainer2").hidden= true;
+			document.getElementById("LeftContainer").hidden= false;
+		}
+	</script>
 </body>
 </html>
