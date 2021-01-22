@@ -46,6 +46,10 @@
         case 11:
             bringpub($con);
             break;    
+        case 12:
+            $rol = $_POST['rol'];
+            verificarRolSession($rol);
+            break;
         default:
             echo "Error";
     }
@@ -71,7 +75,7 @@
 
    #obtiene la información de 1 usuario en específico.  
     function usrdata($con, $email){
-        $result = request(3, $con, "mokef2000@gmail.com");
+        $result = request(3, $con, $email);
         $vars= array('nom', 'ln', 'mail', 'phone');
         $encabezados= array('Nombre', 'Apellido', 'Correo', 'Tel&eacute;fono');
         #muestra un atrubuto de la tabla 'profiledata', definido por $reg en $row["{$reg}"].
@@ -207,6 +211,14 @@
         }else{
             echo 'Image not found...';
         }
+    }
+
+    function verificarRolSession($rol){
+        session_start();
+        if($_SESSION['rol'] == $rol) {
+            echo true;
+        }
+        echo false;
     }
     mysqli_close($con);
 ?>

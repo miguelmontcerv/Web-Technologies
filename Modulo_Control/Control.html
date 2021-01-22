@@ -9,6 +9,22 @@
 
 	<!--jquery-->
 	<script src="jquery-3.5.1.min.js"></script>
+	<script>
+		var parametros= {
+			"opt": 12,
+			"rol": "admin"
+		}
+		$.ajax({
+			data: parametros,
+			url: "../connection/principal.php",
+			type: "post",
+			success: function(response) {
+				if(response != 1) {
+					location.replace("/index.html");
+				}
+			}
+		});
+	</script>
 
 	<link rel="stylesheet" type="text/css" href="ControlEstilos.css">
 	<script type="text/javascript" src="ControlScript.js"></script>
